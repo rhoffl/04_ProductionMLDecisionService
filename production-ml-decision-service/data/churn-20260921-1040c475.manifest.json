@@ -1,0 +1,10 @@
+{
+  "dataset_version": "churn-20260921-1040c475",
+  "created_at": "2026-09-21T00:02:08.920137+00:00",
+  "rows": 12000,
+  "positive_rate": 0.19225,
+  "observation_start": "2024-01-01 00:00:00+00:00",
+  "observation_end": "2026-08-01 00:00:00+00:00",
+  "sha256": "1040c4753fbdcc60ec4bebbe3e02711d08c0e652bbbe9c9fec82e8d6cf6b34b9",
+  "schema_version": "1.0"
+}

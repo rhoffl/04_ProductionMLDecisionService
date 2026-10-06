@@ -1,0 +1,4 @@
+model,cv_pr_auc_mean,cv_pr_auc_std,calibration_pr_auc,best_params
+logistic_baseline,0.4704790844976423,0.007294656317844714,0.474906977621002,"{""model__C"": 2.0}"
+hist_gradient_boosting,0.43050734710134214,0.00931467613652491,0.46963923796281176,"{""model__l2_regularization"": 1.0, ""model__max_leaf_nodes"": 16}"
+random_forest,0.4363436744824058,0.014236353569125847,0.44419755058268257,"{""model__max_depth"": 10, ""model__min_samples_leaf"": 12}"

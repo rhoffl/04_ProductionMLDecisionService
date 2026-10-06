@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: production-ml-decision-service
+Version: 1.0.0
+Summary: Auditable churn decision service with business-aware thresholding and MLOps controls
+Requires-Python: >=3.11
+Requires-Dist: fastapi<1,>=0.115
+Requires-Dist: uvicorn[standard]<1,>=0.30
+Requires-Dist: pydantic<3,>=2.8
+Requires-Dist: pandas<3,>=2.2
+Requires-Dist: numpy<3,>=1.26
+Requires-Dist: scikit-learn<2,>=1.6
+Requires-Dist: joblib<2,>=1.4
+Requires-Dist: mlflow<4,>=2.16
+Requires-Dist: shap<1,>=0.46
+Requires-Dist: psycopg[binary]<4,>=3.2
+Requires-Dist: prometheus-client<1,>=0.21
+Requires-Dist: apscheduler<4,>=3.10
+Requires-Dist: httpx<1,>=0.27
+Provides-Extra: dev
+Requires-Dist: pytest<9,>=8; extra == "dev"
+Requires-Dist: pytest-cov<7,>=5; extra == "dev"
+Requires-Dist: ruff<1,>=0.8; extra == "dev"

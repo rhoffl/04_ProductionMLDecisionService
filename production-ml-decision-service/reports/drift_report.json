@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-09-21T00:02:19.209021+00:00",
+  "reference_rows": 12000,
+  "current_rows": 3000,
+  "drifted_features": [],
+  "alert": false,
+  "features": {
+    "tenure_months": {
+      "metric": "psi",
+      "score": 0.005713058878521617,
+      "drifted": false
+    },
+    "monthly_charge": {
+      "metric": "psi",
+      "score": 0.002958050644289072,
+      "drifted": false
+    },
+    "support_calls_30d": {
+      "metric": "psi",
+      "score": 0.0003725701761485537,
+      "drifted": false
+    },
+    "payment_failures_90d": {
+      "metric": "psi",
+      "score": 0.00015165939252769078,
+      "drifted": false
+    },
+    "usage_change_30d": {
+      "metric": "psi",
+      "score": 0.003568696778876427,
+      "drifted": false
+    },
+    "late_payments_12m": {
+      "metric": "psi",
+      "score": 0.0033687877450419967,
+      "drifted": false
+    },
+    "contract_type": {
+      "metric": "total_variation",
+      "score": 0.005333333333333315,
+      "drifted": false
+    },
+    "payment_method": {
+      "metric": "total_variation",
+      "score": 0.01649999999999998,
+      "drifted": false
+    },
+    "region": {
+      "metric": "total_variation",
+      "score": 0.018333333333333326,
+      "drifted": false
+    }
+  },
+  "interpretation": "Drift is an investigation trigger, not proof of model-performance degradation."
+}

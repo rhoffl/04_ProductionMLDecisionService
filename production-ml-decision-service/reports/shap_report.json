@@ -1,0 +1,71 @@
+{
+  "method": "model-agnostic SHAP",
+  "sample_size": 20,
+  "global_importance": [
+    {
+      "feature": "numeric__tenure_months",
+      "mean_absolute_shap": 0.5065211931040022
+    },
+    {
+      "feature": "numeric__usage_change_30d",
+      "mean_absolute_shap": 0.46581992960023755
+    },
+    {
+      "feature": "categorical__contract_type_month-to-month",
+      "mean_absolute_shap": 0.32605166813595166
+    },
+    {
+      "feature": "numeric__monthly_charge",
+      "mean_absolute_shap": 0.3139063603795931
+    },
+    {
+      "feature": "numeric__payment_failures_90d",
+      "mean_absolute_shap": 0.2897839263333607
+    },
+    {
+      "feature": "numeric__support_calls_30d",
+      "mean_absolute_shap": 0.2688431498938687
+    },
+    {
+      "feature": "categorical__contract_type_annual",
+      "mean_absolute_shap": 0.18169862603118583
+    },
+    {
+      "feature": "categorical__contract_type_two-year",
+      "mean_absolute_shap": 0.1702013488359937
+    },
+    {
+      "feature": "categorical__payment_method_card",
+      "mean_absolute_shap": 0.09504235681266043
+    },
+    {
+      "feature": "categorical__payment_method_bank",
+      "mean_absolute_shap": 0.09009392480344611
+    },
+    {
+      "feature": "numeric__late_payments_12m",
+      "mean_absolute_shap": 0.08853765621034582
+    },
+    {
+      "feature": "categorical__region_east",
+      "mean_absolute_shap": 0.0768672495865956
+    },
+    {
+      "feature": "categorical__region_north",
+      "mean_absolute_shap": 0.039302311783230015
+    },
+    {
+      "feature": "categorical__payment_method_check",
+      "mean_absolute_shap": 0.020680944258858764
+    },
+    {
+      "feature": "categorical__region_west",
+      "mean_absolute_shap": 0.017347191377155277
+    },
+    {
+      "feature": "categorical__region_south",
+      "mean_absolute_shap": 0.008230430734301639
+    }
+  ],
+  "warning": "SHAP describes model behavior; it does not establish causal effects."
+}

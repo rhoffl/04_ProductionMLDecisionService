@@ -1,0 +1,90 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: mluser
+      POSTGRES_PASSWORD: mlpassword
+      POSTGRES_DB: mldecisions
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mluser -d mldecisions"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mlflow:
+    build: .
+    command: >-
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --allowed-hosts "mlflow,mlflow:5000,localhost,localhost:5000,127.0.0.1,127.0.0.1:5000,0.0.0.0,0.0.0.0:5000"
+      --backend-store-uri postgresql://mluser:mlpassword@postgres:5432/mldecisions
+      --default-artifact-root /mlartifacts
+      --serve-artifacts
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-artifacts:/mlartifacts
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  trainer:
+    build: .
+    command: python -m ml.train --promote-initial
+    environment:
+      DATABASE_URL: postgresql://mluser:mlpassword@postgres:5432/mldecisions
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MODEL_DIR: /app/artifacts
+    volumes:
+      - model-artifacts:/app/artifacts
+      - shared-data:/app/data
+      - reports:/app/reports
+    depends_on:
+      mlflow:
+        condition: service_started
+    restart: "no"
+
+  api:
+    build: .
+    ports:
+      - "8004:8004"
+    environment:
+      DATABASE_URL: postgresql://mluser:mlpassword@postgres:5432/mldecisions
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MODEL_DIR: /app/artifacts
+    volumes:
+      - model-artifacts:/app/artifacts
+      - shared-data:/app/data
+      - reports:/app/reports
+    depends_on:
+      trainer:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+
+  scheduler:
+    build: .
+    command: python -m orchestration.scheduler
+    environment:
+      DATABASE_URL: postgresql://mluser:mlpassword@postgres:5432/mldecisions
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MODEL_DIR: /app/artifacts
+      RETRAIN_CRON: "0 2 1 * *"
+    volumes:
+      - model-artifacts:/app/artifacts
+      - shared-data:/app/data
+      - reports:/app/reports
+    depends_on:
+      api:
+        condition: service_started
+
+volumes:
+  postgres-data:
+  mlflow-artifacts:
+  model-artifacts:
+  shared-data:
+  reports:
+
